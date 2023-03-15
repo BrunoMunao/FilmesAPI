@@ -17,4 +17,10 @@ public class FilmeController : ControllerBase
         Console.WriteLine($"Filme: {filme.Titulo}");
         Console.WriteLine($"Ano: {filme.Ano}");
     }
+
+    [HttpGet]
+    public IEnumerable<Filme> RetornaFilmes()
+    {
+        return filmesAppend();
+    }
 }
