@@ -1,5 +1,6 @@
 using FilmesAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var filmeConnectionString = builder.Configuration.GetConnectionString("FilmeConnection");
 
 builder.Services.AddDbContext<FilmeContext>(options =>
-options.UseMySql(filmeConnectionString, ServerVersion.AutoDetect(filmeConnectionString)));
+options.UseLazyLoadingProxies().UseMySql(filmeConnectionString, ServerVersion.AutoDetect(filmeConnectionString)));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

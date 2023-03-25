@@ -4,14 +4,17 @@ using FilmesAPI.Models;
 
 namespace FilmesAPI.Profiles
 {
-    public class CinemaProfile : Profile
+    public class FilmeProfile : Profile
     {
-        public CinemaProfile()
+        public FilmeProfile()
         {
-            CreateMap<CreateFilmeDto, Cinema>();
-            CreateMap<UpdateFilmeDto, Cinema>();
-            CreateMap<Cinema, UpdateFilmeDto>();
-            CreateMap<Cinema, ReadFilmeDto>();
+            CreateMap<CreateFilmeDto, Filme>();
+            CreateMap<UpdateFilmeDto, Filme>();
+            CreateMap<Filme, UpdateFilmeDto>();
+            CreateMap<Filme, ReadFilmeDto>()
+                .ForMember(cinemaDto => cinemaDto.Sessoes,
+                    opt => opt.MapFrom(cinema => cinema.Sessoes));
+            ;
         }
     }
 }
